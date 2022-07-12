@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block brand %}<img src="{% static 'PBL_logo.png' %}">{% endblock %}
+{% block content %}
+<h1 class="text-center py-3">Welcome to PBL-o-Pedia!</h1>
+<h2 class="footer-copyright text-center py-3">The encyclopedia to everything PBL!</h2>
+<h3 class="footer-copyright text-center py-3">Number of Projects: {{total_projects}}</h3>
+<h3 class="footer-copyright text-center py-3">Students Enrolled: 74</h3>
+{% endblock %}
+{% block serach_prj %}
+<form class="form-inline my-2 my-lg-0" action="{% url 'project_search' %}" method="GET">
+    <input class="form-control mr-sm-1" name="prj_name" type="search" placeholder="Enter Project Name" aria-label="Search" required>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+{% endblock %}

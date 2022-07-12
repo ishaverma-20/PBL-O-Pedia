@@ -1,0 +1,22 @@
+{% extends 'projectoapp/base.html' %}
+{% block content %}
+{% block prj_head %}
+  <h3 class="footer-copyright text-center py-3">No Of Projects:{{total_projects}}</h3>
+{% endblock %}
+
+<ul class="list-group">
+  {% for item in project_list %}
+  <li class="list-group-item">
+      <span class="text-info">Title: </span> <span>{{ item.project.name }}</span>
+      <br>
+      <span class="text-info">Division: </span><span>{{ item.project.div }}</span>
+      <br>
+      <span class="text-info">Status </span><span>{{ item.project.status.name }}</span>
+      <br>
+      <a class="btn btn-primary btn-sm active" role="button" href="{% url 'project_action' item.project.id %}">Detail</a>
+      <a class="btn btn-primary btn-sm active" role="button" href="{% url 'project_action' item.project.id %}?op=review">Review</a>
+      <a class="btn btn-primary btn-sm active" role="button" href="{% url 'project_action' item.project.id %}?op=modify">Modify</a>      
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

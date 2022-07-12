@@ -1,0 +1,54 @@
+{% extends 'projectoapp/base.html' %}
+
+{% block content %}
+<div class="ml-3" >
+      <br>
+      <h3>Project Details</h3>
+      <hr>
+      <span class="text-info">Title: </span> <span>{{ project.name }}</span>
+      <br>
+      <span class="text-info">Domain: </span><span>{{ project.domain }}</span>
+      <br>
+      <span class="text-info">Division: </span><span>{{ project.div }}</span>
+      <br>
+      <span class="text-info">Status: </span><span>{{ project.status.name }}</span>
+      <br>
+      <span class="text-info">Coordinator: </span><span>{{ coordinator.name }}</span>
+      <br>
+      <span class="text-info">Team: </span>
+            <span>
+                  {% for student in students %} 
+                  {{student.name}}-{{student.id}},
+                  {% endfor %}
+            </span>
+      <br>
+      {% if reviews %}         
+      <span class="text-info">Overall Rating: </span><span class="badge badge-primary badge-pill">{{ project_rating }}</span>
+      {% endif %}
+      <hr>
+      {% if not reviews %}         
+            <h3>Be the first one to write a review.</h3>
+      {% endif %}
+
+      {% block reviewForm %}{% endblock %}
+      {% if reviews %}
+            <br>
+            <hr>
+            <h3>Review Comments</h3>
+            <ul>
+            {% for review in reviews %}
+                  <li class="list-group-item">
+                        <span class="text-info">Review comment: </span> <span>{{ review.review_com }}</span>
+                        <br>
+                        <span class="text-info">Created on: </span><span>{{ review.creation_date }}</span>
+                        <br>
+                        <span class="text-info">Rating: </span><span class="badge badge-secondary badge-pill">{{ review.rating }}</span>
+                        <br>
+                        <span class="text-info">Creator: </span><span>{{ review.user_name }}</span>
+                        <br>
+                  </li>
+            {% endfor %}
+            </ul>
+      {% endif %}
+</div>
+{% endblock %}

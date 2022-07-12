@@ -1,0 +1,56 @@
+{% extends 'projectoapp/base.html' %}
+
+{% block content %}
+<form action="{% url 'project_update' form.id.value %}?op=proj" method="post">
+      {% csrf_token %}
+      <div class="ml-5">
+            <br>
+            <h3>Modify Project</h3>
+            <hr>
+            <div class="form-group row">
+                  <label class="col-sm-1  text-info">Project Id</label>
+                  <div class="col-sm-10">
+                        <input type="text" value="{{form.id.value}}" {% if form.id.value %}
+                              disabled {% endif %}>
+                  </div>
+            </div>
+            <input type="text" name="{{form.id.name}}" value="{{form.id.value}}" hidden>
+
+            <div class="form-group row">
+                  <label class="col-sm-1 text-info">Title</label>
+                  <div class="col-sm-5">
+                        {{ form.name }}
+                  </div>
+            </div>
+            <div class="form-group row">
+                  <label class="col-sm-1 text-info">Domain</label>
+                  <div class="col-sm-5">
+                        {{ form.domain }}
+                  </div>
+            </div>
+            <div class="form-group row">
+                  <label class="col-sm-1 text-info">Division</label>
+                  <div class="col-sm-5">
+                        {{ form.div }}
+                  </div>
+            </div>
+            <div class="form-group row">
+                  <label class="col-sm-1 text-info">Status</label>
+                  <div class="col-sm-5">
+                        {{ form.status }}
+                  </div>
+            </div>
+            <div class="form-group row">
+                  <label class="col-sm-1 text-info">Coordinator</label>
+                  <div class="col-sm-5">
+                        {{ form.coordinatior_id }}
+                  </div>
+            </div>
+            <div class="form-group row">
+                  <div class="col-sm-7">
+                        <button class="btn btn-primary btn-sm active" style="width: 100px;" type="submit">Save</button>
+                  </div>
+            </div>
+      </div>
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'projectoapp/project_detail.html' %}
+
+{% block reviewForm %}
+<h5>Add your review.</h5>
+<form action = "{% url 'project_update' form.project_id.value %}?op={{op}}" method = "post">
+      {% csrf_token %}
+      <span class="text-info">Name: </span> 
+      <span> <input  type="text" name="{{form.user_name.name}}" maxlength="100" required></span>
+        <br><br>
+      <span class="text-info">Rating:</span> <span>{{ form.rating }}</span>
+      <br><br>
+      <span class="text-info">Comment </span> <br> <span><textarea name="review_com" maxlength="100" placeholder="Your comments, max 100 characters,no enter" rows="4" cols="50" required></textarea></span>
+      <br><br>
+      <input type="hidden" name="project_id" value="{{ form.project_id.value }}">
+      <button class="btn btn-primary btn-sm active" style="width: 80px;" type="submit">Save</button>
+  </form>
+{% endblock %}
